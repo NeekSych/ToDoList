@@ -2,11 +2,11 @@ import React from "react";
 import TaskLabel from "./task-label";
 const Task = () => {
     return (
-      <div>
-        <input class="toggle" type="checkbox"/>
+      <div className='view'>
+        <input className="toggle" type="checkbox"/>
               <TaskLabel/>
-              <button class="icon icon-edit"></button>
-              <button class="icon icon-destroy"></button>
+              <button className="icon icon-edit"></button>
+              <button className="icon icon-destroy"></button>
       </div>
     )
 }

@@ -4,7 +4,7 @@ import Footer from "../footer/footer";
 
 const AppMain = () => {
       return (
-        <section>
+        <section className='main'>
             <TaskList/>
             <Footer/>
         </section>

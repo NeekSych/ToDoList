@@ -2,7 +2,7 @@ import React from "react";
 import Task from '../task/task.js'
   const TaskList = () => {
       return (
-        <ul>
+        <ul class='todo-list'>
             <li>
                 <Task/>
             </li>
