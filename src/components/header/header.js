@@ -1,5 +1,5 @@
 import React from 'react';
-import NewTaskForm from './new-task-form/new-task-form';
+import NewTaskForm from './new-task-form';
 const AppHeader = () => {
   return (
     <header className='header'>

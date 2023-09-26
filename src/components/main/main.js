@@ -1,11 +1,12 @@
 import React from "react";
-import TaskList from "../todo-list/todo-list";
+import TaskList from "./TaskList/TaskList";
 import Footer from "../footer/footer";
 
+import {toDoData} from "../..";
 const AppMain = () => {
       return (
         <section className='main'>
-            <TaskList/>
+            <TaskList data={toDoData}/>
             <Footer/>
         </section>
       )

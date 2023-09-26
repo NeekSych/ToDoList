@@ -3,7 +3,7 @@ import Filters from "./filters/filters";
 
 const Footer = () => {
     return (
-    <footer class='footer'>
+    <footer className='footer'>
         <span className='todo-count'>1 items left</span>
         <Filters/>
         <button className='clear-completed'>Clear completed</button>
