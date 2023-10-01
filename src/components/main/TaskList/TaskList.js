@@ -1,13 +1,22 @@
 import React from "react";
 import Task from './task/task.js'
 
-function TaskList({data}){
-  const elements = data.map((item)=>{
+import './task-list.css'
+export default class TaskList extends React.Component {
+  
+  render(){
+  const elements = this.props.propsData.map((item)=>{
   const {id, ...itemProps} = item;
+  const propsDeleted = this.props.propsDeleted
 
   return(
-    <li key ={id}>
-      <Task {...itemProps}/>
+    <li //completed editing
+      key ={id} 
+      className='todo-list-item'
+      
+    >
+      <Task {...itemProps}
+      onDeleted = {()=> propsDeleted(id)}/>
     </li>
   )
   })
@@ -18,5 +27,4 @@ function TaskList({data}){
         </ul>
       )
 }
-
-export default TaskList; 
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import Filters from "./filters/filters";
-
+import './footer.css'
 const Footer = () => {
     return (
     <footer className='footer'>

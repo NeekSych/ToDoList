@@ -1,6 +1,7 @@
 import React from "react";
-
-const Filters = () => {
+import './filters.css'
+export default class  Filters extends React.Component {
+  render(){
     return (
         <ul className="filters">
         <li>
@@ -14,5 +15,5 @@ const Filters = () => {
         </li>
       </ul>
     )
+    }
 }
-export default Filters; 
