@@ -41,11 +41,11 @@ class App extends Component{
       }
     })
   }
-  addItem = () =>  {
+  addItem = (value) =>  {
     const i = {
-      label:'add',
+      label: value,
       importent: false,
-      id:8
+      id:this.id++
     };
     this.setState(({toDoData})=>{
       
@@ -57,7 +57,6 @@ class App extends Component{
   }
 
   onToggleDone = (id) =>{
-    console.log('chaban')
     this.setState(({toDoData})=>{
       const idElem = toDoData.findIndex((el)=> el.id===id);
 
@@ -66,7 +65,7 @@ class App extends Component{
       const newElem = {...oldElem, done: !oldElem.done};
       
       const newArray = [...toDoData.slice(0, idElem), newElem, ...toDoData.slice(idElem+1)]
-    console.log(newArray)
+    
     return {
       toDoData: newArray
     }
