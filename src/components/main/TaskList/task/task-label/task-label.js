@@ -6,6 +6,7 @@ export default class TaskLabel extends React.Component{
     this.state = {
       done: false,
     };
+    this.onToggleDone=this.props.onToggleDone
     }
   onLabelClick = () => {
     this.setState((state)=>{
@@ -30,6 +31,7 @@ export default class TaskLabel extends React.Component{
               className="label">
                 <span 
                 className={classItem} 
+                onClick={this.onToggleDone}
                 >
                   {label}
                   

@@ -9,8 +9,10 @@ const AppMain = (props) => {
         <section className='main'>
             <TaskList propsData={props.propsData}
               propsDeleted = {props.onDeleted}
+              onToggleDone= {props.onToggleDone}
             />
-            <Footer/>
+            <Footer
+            doneCount= {props.doneCount}/>
         </section>
       )
   }

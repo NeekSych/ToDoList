@@ -7,8 +7,8 @@ export default class TaskList extends React.Component {
   render(){
   const elements = this.props.propsData.map((item)=>{
   const {id, ...itemProps} = item;
-  const propsDeleted = this.props.propsDeleted
-
+  const propsDeleted = this.props.propsDeleted;
+  const onToggleDone = this.props.onToggleDone;
   return(
     <li //completed editing
       key ={id} 
@@ -16,7 +16,10 @@ export default class TaskList extends React.Component {
       
     >
       <Task {...itemProps}
-      onDeleted = {()=> propsDeleted(id)}/>
+      onDeleted = {()=> propsDeleted(id)}
+      onToggleDone = {onToggleDone}
+      id ={id}
+      />
     </li>
   )
   })
