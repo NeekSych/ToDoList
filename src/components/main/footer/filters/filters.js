@@ -2,16 +2,23 @@ import React from "react";
 import './filters.css'
 export default class  Filters extends React.Component {
   render(){
+    const filterItems = this.props.filterItems
     return (
         <ul className="filters">
         <li>
-          <button className="selected">All</button>
+          <button className="selected"
+          onClick = {()=>filterItems('all')}
+          >All</button>
         </li>
         <li>
-          <button>Active</button>
+          <button
+          onClick = {()=>filterItems('active')}
+          >Active</button>
         </li>
         <li>
-          <button>Completed</button>
+          <button
+          onClick = {()=>filterItems('completed')}
+          >Completed</button>
         </li>
       </ul>
     )

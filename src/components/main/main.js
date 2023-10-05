@@ -12,6 +12,7 @@ const AppMain = (props) => {
               onToggleDone= {props.onToggleDone}
             />
             <Footer
+            filterItems ={props.filterItems}
             doneCount= {props.doneCount}/>
         </section>
       )
