@@ -1,5 +1,8 @@
 import React from "react";
 import './task-label.css'
+import { formatDistance} from 'date-fns'
+
+
 export default class TaskLabel extends React.Component{
   constructor(props){
     super(props)
@@ -13,9 +16,10 @@ export default class TaskLabel extends React.Component{
       }
     })
   }
-  
+  createDate= Date.now();
   render(){
     const {label} = this.props
+    
     
     const {done} = this.state
     let classItem = 'description'
@@ -34,7 +38,7 @@ export default class TaskLabel extends React.Component{
                   {label}
                   
                   </span>
-                <span className="created">created 17 seconds ago</span>
+                <span className="created">{formatDistance(this.createDate, new Date(), {addSuffix: true})}</span>
               </label>
               
     )

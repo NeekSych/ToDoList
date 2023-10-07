@@ -41,7 +41,7 @@ class App extends Component{
     })
   }
   
-  deleteCompleted = ()=>{
+  deleteCompleted = ()=>{ 
     this.setState(({toDoData})=>{
       const newArray = toDoData.filter((elem)=>elem.done===false)
       return {
@@ -54,7 +54,8 @@ class App extends Component{
     this.setState({toDoFilter:filter})
     
   }
-
+  
+  
 
   addItem = (value) =>  {
     const i = {
@@ -83,6 +84,11 @@ class App extends Component{
   })
   }
  
+
+
+
+
+
   render(){
     let {toDoData, toDoFilter} = this.state
     let activeArray=toDoData
