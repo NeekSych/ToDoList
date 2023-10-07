@@ -13,7 +13,8 @@ const AppMain = (props) => {
             />
             <Footer
             filterItems ={props.filterItems}
-            doneCount= {props.doneCount}/>
+            doneCount= {props.doneCount}
+            deleteCompleted ={props.deleteCompleted}/>
         </section>
       )
   }

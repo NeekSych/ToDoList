@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {useState} from 'react';
 import  ReactDOM  from 'react-dom/client';
  
 import AppHeader from  './components/header/header.js';
@@ -42,6 +41,14 @@ class App extends Component{
     })
   }
   
+  deleteCompleted = ()=>{
+    this.setState(({toDoData})=>{
+      const newArray = toDoData.filter((elem)=>elem.done===false)
+      return {
+        toDoData: newArray
+      }
+  })
+}
   
   filterItems= (filter)=>{
     this.setState({toDoFilter:filter})
@@ -52,7 +59,7 @@ class App extends Component{
   addItem = (value) =>  {
     const i = {
       label: value,
-      importent: false,
+      important: false,
       id:this.id++
     };
     this.setState(({toDoData})=>{
@@ -96,6 +103,7 @@ class App extends Component{
       onDeleted={this.deleteItem}
       onToggleDone = {this.onToggleDone}
       doneCount = {doneCount}
+      deleteCompleted = {this.deleteCompleted}
       />
     </section>
   );
