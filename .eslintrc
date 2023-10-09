@@ -1,0 +1,21 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true,
+    },
+    "extends": [
+        "airbnb"
+    ],
+    "rules": {
+        "indent": [
+            2,
+            "tabs"
+        ],
+        "parser": "@babel/eslint-parser",
+        "linebreak-style": [
+            "error",
+            "windows"
+        ]
+    },
+}

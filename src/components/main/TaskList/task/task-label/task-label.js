@@ -9,7 +9,7 @@ export default class TaskLabel extends React.Component{
     this.state = props
     this.onToggleDone=this.props.onToggleDone
     }
-  onLabelClick = () => {
+  onLabelClick=()=>{
     this.setState((state)=>{
       return {
         done: !state.done

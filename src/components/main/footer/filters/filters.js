@@ -1,7 +1,7 @@
 import React from "react";
 import './filters.css'
 export default class  Filters extends React.Component {
-  state = {
+  state= {
     selectedFilter: 'all',
   };
   handleFilterClick= (filter)=> {
