@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import  {Component} from 'react';
 import  ReactDOM  from 'react-dom/client';
  
 import AppHeader from  './components/header/header.js';
@@ -32,7 +32,7 @@ class App extends Component{
   
   deleteItem = (id)=>{
     this.setState(({toDoData})=>{
-      const idx = toDoData.findIndex((el)=> el.id !== id);
+      const idx = toDoData.findIndex((el)=> el.id === id);
       const newArray = [...toDoData.slice(0, idx), ...toDoData.slice(idx +1)]
       
       return {

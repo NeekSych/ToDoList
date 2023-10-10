@@ -1,4 +1,4 @@
-import React from 'react';
+
 import NewTaskForm from './new-task-form/new-task-form';
 
 import './header.css';

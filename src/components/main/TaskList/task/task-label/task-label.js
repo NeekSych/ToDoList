@@ -29,13 +29,21 @@ export default class TaskLabel extends React.Component{
     
     
     return (
-              <label onClick={this.onLabelClick}
+              
+              <label
               className="label">
                 <span 
+                role="button"
+                tabIndex={0}
                 className={classItem} 
                 onClick={this.onToggleDone}
+                onKeyDown={this.onToggleDone}
                 >
-                  {label}
+                  <span 
+                role="button"
+                tabIndex={0} 
+              onClick={this.onLabelClick}
+              onKeyDown = {this.onLabelClick}>{label}</span>
                   
                   </span>
                 <span className="created">{formatDistance(this.createDate, new Date(), {addSuffix: true})}</span>

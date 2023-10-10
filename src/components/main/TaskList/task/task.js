@@ -11,7 +11,6 @@ export default class Task extends React.Component {
     const id = this.props.id;
     return (
       <div className='view'>
-        <input className="toggle" type="checkbox" />
               <TaskLabel 
               {...itemProps}
               onToggleDone={()=> onToggleDone(id)}
