@@ -9,6 +9,8 @@ export default class TaskList extends React.Component {
   const {id, ...itemProps} = item;
   const propsDeleted = this.props.propsDeleted;
   const onToggleDone = this.props.onToggleDone;
+  const onToggleTimer = this.props.onToggleTimer;
+  const updateTime = this.props.updateTime;
   return(
     <li //completed editing
       key ={id} 
@@ -18,6 +20,8 @@ export default class TaskList extends React.Component {
       <Task {...itemProps}
       onDeleted = {()=> propsDeleted(id)}
       onToggleDone = {onToggleDone}
+      updateTime = {updateTime}
+      onToggleTimer = {onToggleTimer}
       id ={id}
       />
     </li>

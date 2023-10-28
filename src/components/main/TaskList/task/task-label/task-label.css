@@ -3,3 +3,7 @@
     color: #cdcdcd;
     
 };
+.timer-button{outline: 1px solid red;
+    padding-left: 10px;
+    display:none;
+}

@@ -1,5 +1,6 @@
 import  {Component} from 'react';
 import  ReactDOM  from 'react-dom/client';
+import {v4 as uuidv4} from 'uuid';
  
 import AppHeader from  './components/header/header.js';
 import AppMain from './components/main/main.js';
@@ -13,7 +14,7 @@ class App extends Component{
   state = {
     toDoData: [
       this.createElement("do somethin"),
-      this.createElement('do something else'),
+      this.createElement('do st else'),
       this.createElement('do it again'),
       this.createElement('and again'),
       this.createElement('one more time'),
@@ -26,7 +27,10 @@ class App extends Component{
     label,
     important: false,
     done: false,
-    id: this.id++,
+    id: uuidv4(),
+    timerRunning: false,
+    firstRunning: true,
+    elapsedTime: 0,
     }
   }
   
@@ -61,7 +65,7 @@ class App extends Component{
     const i = {
       label: value,
       important: false,
-      id:this.id++
+      id: uuidv4()
     };
     this.setState(({toDoData})=>{
       
@@ -84,9 +88,64 @@ class App extends Component{
   })
   }
  
+  
+  toggleTimer = (id) => {
+    this.setState(({ toDoData }) => {
+      const taskIndex = toDoData.findIndex((task) => task.id === id);
+      const task = toDoData[taskIndex];
+  
+      let newTimer = task.timerRunning;
+      
+      if (task.timerRunning) {
+        clearInterval(task.timerId); 
+        newTimer = null; 
+      } else {
+        const timerId = setInterval(() => {
+          this.updateTime(id); 
+        }, 1000);
+        newTimer = timerId;
+      }
+  
+      const updatedTask = {
+        ...task,
+        timerRunning: !task.timerRunning,
+        timerId: newTimer,
+      };
+  
+      const newToDoData = [
+        ...toDoData.slice(0, taskIndex),
+        updatedTask,
+        ...toDoData.slice(taskIndex + 1),
+      ];
+  
+      return { toDoData: newToDoData };
+    });
+  };
+  
+  updateTime = (id) => {
+    this.setState(({ toDoData }) => {
+      const taskIndex = toDoData.findIndex((task) => task.id === id);
+      const task = toDoData[taskIndex];
+      const updatedTask = { ...task, elapsedTime: task.elapsedTime + 1 }; // увеличиваем на 1 секунду
+  
+      const newToDoData = [
+        ...toDoData.slice(0, taskIndex),
+        updatedTask,
+        ...toDoData.slice(taskIndex + 1),
+      ];
+  
+      return { toDoData: newToDoData };
+    });
+  };
 
-
-
+  componentWillUnmount() {
+    
+    this.state.toDoData.forEach(item => {
+      if (item.timerId) {
+        clearInterval(item.timerId);
+      }
+    });
+  }
 
 
   render(){
@@ -110,6 +169,9 @@ class App extends Component{
       onToggleDone = {this.onToggleDone}
       doneCount = {doneCount}
       deleteCompleted = {this.deleteCompleted}
+      onToggleTimer = {this.toggleTimer}
+      upDateTime = {this.updateTime}
+      timerRunning = {this.state.timerRunning}
       />
     </section>
   );

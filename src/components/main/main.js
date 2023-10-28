@@ -10,11 +10,16 @@ const AppMain = (props) => {
             <TaskList propsData={props.propsData}
               propsDeleted = {props.onDeleted}
               onToggleDone={props.onToggleDone}
+              timerRunning = {props.timerRunning}
+              onToggleTimer = {props.onToggleTimer}
+              updateTime = {props.updateTime}
             />
             <Footer
             filterItems ={props.filterItems}
             doneCount= {props.doneCount}
-            deleteCompleted ={props.deleteCompleted}/>
+            deleteCompleted ={props.deleteCompleted}
+            
+            />
         </section>
       )
   }
