@@ -13,7 +13,7 @@ export default class TaskList extends React.Component {
   const updateTime = this.props.updateTime;
   return(
     <li //completed editing
-      key ={id} 
+      key = {id}
       className='todo-list-item'
       
     >

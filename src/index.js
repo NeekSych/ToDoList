@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
  
 
 class App extends Component{
-  id=0;
+  
   state = {
     toDoData: [
       this.createElement("do somethin"),
@@ -35,10 +35,16 @@ class App extends Component{
   }
   
   deleteItem = (id)=>{
+    // this.state.toDoData.forEach(item => {
+    //   if (item.timerId) {
+    //     clearInterval(item.timerId);
+    //   }
+    // });
     this.setState(({toDoData})=>{
       const idx = toDoData.findIndex((el)=> el.id === id);
+      const task = toDoData[idx];
+        clearInterval(task.timerId);  
       const newArray = [...toDoData.slice(0, idx), ...toDoData.slice(idx +1)]
-      
       return {
         toDoData: newArray
       }
@@ -46,6 +52,11 @@ class App extends Component{
   }
   
   deleteCompleted = ()=>{ 
+    this.state.toDoData.forEach(item => {
+      if (item.done) {
+        clearInterval(item.timerId);
+      }
+    });
     this.setState(({toDoData})=>{
       const newArray = toDoData.filter((elem)=>elem.done===false)
       return {
@@ -65,7 +76,10 @@ class App extends Component{
     const i = {
       label: value,
       important: false,
-      id: uuidv4()
+      id: uuidv4(),
+      timerRunning: false,
+      firstRunning: true,
+      elapsedTime: 0,
     };
     this.setState(({toDoData})=>{
       
