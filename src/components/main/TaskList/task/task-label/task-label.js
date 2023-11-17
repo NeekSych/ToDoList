@@ -4,11 +4,11 @@ import { ToDoContext } from "../../../../../Context";
 import { formatDistance} from 'date-fns'
 
 export default function TaskLabel (props){
-    let {label, elapsedTime,  timerRunning,   id, done} =props.propsElem;
+    let {label, elapsedTime,  createDate, timerRunning,   id, done} =props.propsElem;
     const {onToggleDone} = useContext(ToDoContext)
     let [time, setTime] = useState(elapsedTime);
     let [isRunning, setIsRunning] = useState(timerRunning)
-    
+    let [createTime, setCreatetime] = useState(formatDistance(createDate, new Date(), {addSuffix: true}))
     
     
     useEffect(()=>{
@@ -62,7 +62,7 @@ export default function TaskLabel (props){
                     {isRunning ? `⏸️` : '▶️'} 
                   </button>
                   </div>
-                {/* <span className="created">{formatDistance(createDate, new Date(), {addSuffix: true})}</span> */}
+                <span className="created">{createTime}</span>
               </label>
               
     )

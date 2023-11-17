@@ -29,6 +29,7 @@ const addItem = (value, minutes,seconds) =>  {
     timerId: null,
     id: uuidv4(),
     timerRunning: true,
+    createDate: Date.now(),
     elapsedTime: (+minutes*60)+(+seconds)
   };
   setData([...data, i])  
