@@ -1,16 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
 import Filters from "./filters/filters";
+import { ToDoContext } from "../../../Context";
 import './footer.css'
-export default class Footer extends React.Component{
-    render(){
-    const doneCount = this.props.doneCount;
-    const filterItems = this.props.filterItems;
-    const deleteCompleted = this.props.deleteCompleted;
+export default function Footer (){
+   const {doneCount, filterItems, deleteCompleted} = useContext(ToDoContext)
     return (
     <footer className='footer'>
         <span className='todo-count'>{doneCount} items left</span>
-        <Filters
-        filterItems ={filterItems}/>
+        <Filters />
         <button 
         className='clear-completed'
         onClick={deleteCompleted}
@@ -18,5 +15,5 @@ export default class Footer extends React.Component{
     </footer>
     )
 }
-}
+
  

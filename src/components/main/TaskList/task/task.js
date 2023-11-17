@@ -1,33 +1,29 @@
-import React from "react";
+import React, {useContext} from "react";
 import TaskLabel from "./task-label/task-label";
-
 import './task.css'
-export default class Task extends React.Component {
-  
-  render(){ 
-    const itemProps = this.props;
-    const onDeleted = this.props.onDeleted
-    const onToggleDone  = this.props.onToggleDone;
-    
-    const onToggleTimer = this.props.onToggleTimer
-  
-  
-    const id = this.props.id;
+import { ToDoContext } from "../../../../Context";
+export default function Task (props) {
+    const { deleteItem,  toggleTimer, onToggleDone} = useContext(ToDoContext)
+    const item = props.propsElem
     return (
       <div className='view'>
+              <input 
+              className="toggle" 
+              type="checkbox"
+              onClick={()=>{
+                onToggleDone(item.id)}
+              }
+              />
+              <TaskLabel propsElem = {item}
               
-              <TaskLabel 
-              {...itemProps}
-              onToggleDone={()=> onToggleDone(id)}
-              
-              onToggleTimer={()=>onToggleTimer(id)}
+              toggleTimer={()=>toggleTimer(item.id)} 
               />
                 
               <button className="icon icon-edit"
               ></button>
               <button className="icon icon-destroy"
-              onClick={onDeleted}></button>
+              onClick={()=>deleteItem(item.id)}></button>
       </div>
     ) 
-}
+
 }

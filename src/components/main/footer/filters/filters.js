@@ -1,34 +1,28 @@
-import React from "react";
+import React, { useContext} from "react";
+import { ToDoContext } from "../../../../Context";
 import './filters.css'
-export default class  Filters extends React.Component {
-  state= {
-    selectedFilter: 'all',
-  };
-  handleFilterClick= (filter)=> {
-    this.setState({ selectedFilter: filter });
-  }
-
-  render(){
-    const filterItems = this.props.filterItems
+export default function  Filters (){
+    const {filterItems, toDoFilter} = useContext(ToDoContext)
+   
     return (
         <ul className="filters">
         <li>
-          <button className={this.state.selectedFilter === 'all' ? 'selected' : ''}
-          onClick={() => {this.handleFilterClick('all');filterItems('all')}}
+          <button className={toDoFilter === 'all' ? 'select' : ''}
+          onClick={() => {filterItems('all')}}
           >All</button>
         </li>
         <li>
-          <button className={this.state.selectedFilter === 'active' ? 'selected' : ''}
-          onClick={() => {this.handleFilterClick('active'); filterItems('active')}}
+          <button className={toDoFilter === 'active' ? 'select' : ''}
+          onClick={() => {filterItems('active')}}
           >Active</button>
         </li>
         <li>
-          <button className={this.state.selectedFilter === 'completed' ? 'selected' : ''}
-          onClick={()=>{this.handleFilterClick('completed'); filterItems('completed')}}
+          <button className={toDoFilter === 'completed' ? 'select' : ''}
+          onClick={()=>{filterItems('completed')}}
           
           >Completed</button>
         </li>
       </ul>
     )
     }
-}
+

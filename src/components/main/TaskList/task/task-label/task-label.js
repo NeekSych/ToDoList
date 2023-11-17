@@ -1,80 +1,69 @@
-import React from "react";
-import './task-label.css'
+import React, {useContext, useState, useEffect} from "react";
+import './task-label.css';
+import { ToDoContext } from "../../../../../Context";
 import { formatDistance} from 'date-fns'
 
+export default function TaskLabel (props){
+    let {label, elapsedTime,  timerRunning,   id, done} =props.propsElem;
+    const {onToggleDone} = useContext(ToDoContext)
+    let [time, setTime] = useState(elapsedTime);
+    let [isRunning, setIsRunning] = useState(timerRunning)
+    
+    
+    
+    useEffect(()=>{
+      
+      const interval = setInterval(()=>{
+        isRunning&&setTime((time)=>(time>0 ? time-1 : 0))
+      }, 1000)
+      
+      if(time===0&&isRunning===true){
+        setIsRunning(false)
+        onToggleDone(id)
 
-export default class TaskLabel extends React.Component{
-  constructor(props){
-    super(props)
-    this.state = {props,
-      timer:0
-  }
-    this.onToggleDone=this.props.onToggleDone,
-    this.onToggleTimer = this.props.onToggleTimer
-    }
-  onLabelClick=()=>{
-    this.setState((state)=>{
-      return {
-        done: !state.done
       }
-    })
-  }
-  updateTime = this.props.updateTime
-  createDate= Date.now();
-  componentDidMount() {
-    this.onToggleTimer()
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
-  render(){
-    const {label} = this.props
-    const { elapsedTime, timerRunning } = this.props; 
-    
-    
-    const minutes = Math.floor(elapsedTime / 60);
-  const seconds = String(elapsedTime % 60).padStart(2, '0');
-  const timeDisplay = `${minutes}:${seconds}`;
-    
-    const {done} = this.state
-    let classItem = 'description'
-    if (done){
-      classItem += '  complete'
-    }
-    
-    
+      return ()=>{
+        clearInterval(interval);
+      }
+        
+      },[time, isRunning]
+     )
+     const timerToggle =()=>{
+       setIsRunning(!isRunning)
+     }
+     
+      
     return (
-              
               <label
-              className="label">
+                className="label">
+                
                 <span 
                 role="button"
                 tabIndex={0}
-                className={classItem} 
-                onClick={this.onToggleDone}
-                onKeyDown={this.onToggleDone}
+                className={done?'description--completed':'description'} 
+                onClick={()=>{
+                  onToggleDone(id)}
+                }
+                onKeyDown={()=>{
+                  onToggleDone(id)}
+                }
                 >
-                  <span 
-                role="button"
-                tabIndex={0} 
-              onClick={this.onLabelClick}
-              onKeyDown = {this.onLabelClick}>{label}</span>
-                  
-                  </span>
+                 {label}
+                </span>
                   <div>
-                  <span className='timer-display'>{timeDisplay}</span> 
+                  <span className='timer-display'>{`${Math.floor(time / 60)}:${String(time % 60).padStart(2, '0')}`}</span> 
                   <button 
                     className='timer-button' 
-                    onClick={() => this.onToggleTimer()} 
+                    onClick = {()=>{
+                      timerToggle()
+                  }
+                    }
                   >
-                    {timerRunning ? `⏸️` : '▶️'} 
+                    {isRunning ? `⏸️` : '▶️'} 
                   </button>
                   </div>
-                <span className="created">{formatDistance(this.createDate, new Date(), {addSuffix: true})}</span>
+                {/* <span className="created">{formatDistance(createDate, new Date(), {addSuffix: true})}</span> */}
               </label>
               
     )
-}
-}
+    }

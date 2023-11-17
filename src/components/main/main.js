@@ -4,22 +4,12 @@ import Footer from "./footer/footer";
 
 import './main.css';
 
-const AppMain = (props) => {
+const AppMain = () => {
       return (
         <section className='main'>
-            <TaskList propsData={props.propsData}
-              propsDeleted = {props.onDeleted}
-              onToggleDone={props.onToggleDone}
-              timerRunning = {props.timerRunning}
-              onToggleTimer = {props.onToggleTimer}
-              updateTime = {props.updateTime}
+            <TaskList
             />
-            <Footer
-            filterItems ={props.filterItems}
-            doneCount= {props.doneCount}
-            deleteCompleted ={props.deleteCompleted}
-            
-            />
+            <Footer    />
         </section>
       )
   }
